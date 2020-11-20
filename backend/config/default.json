@@ -1,0 +1,4 @@
+{
+  "mongoURI": "mongodb+srv://shrav123:shrav123@yelp.zwkvq.mongodb.net/<dbname>?retryWrites=true&w=majority",
+  "jwtSecret": "YelpLab3Secret"
+}
