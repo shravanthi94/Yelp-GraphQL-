@@ -2,6 +2,7 @@ const jwt = require('jsonwebtoken');
 const config = require('config');
 const bcrypt = require('bcryptjs');
 const User = require('../models/UserModel');
+const Restaurant = require('../models/RestaurantModel');
 
 const customerLogin = async (args) => {
   let user = await User.findOne({ email: args.email });
@@ -36,4 +37,38 @@ const customerLogin = async (args) => {
   }
 }
 
+const restaurantLogin = async (args) => {
+  let restaurant = await Restaurant.findOne({ email: args.email });
+  if (!restaurant) {
+      return { status: 401, message: "NO_RESTAURANT" };
+  }
+  const isMatch = await bcrypt.compare(args.password, restaurant.password);
+
+  if (isMatch) {
+      const payload = { 
+        user: {
+          id: restaurant._id, 
+          name: restaurant.name, 
+          email: restaurant.email, 
+          usertype: 'restaurant' 
+        }
+      };
+
+      const token = jwt.sign(
+        payload, 
+        config.get('jwtSecret'), 
+        { expiresIn: 1008000 }
+      );
+
+      return { 
+        status: 200,
+        message: token
+      };
+  }
+  else {
+      return { status: 401, message: "INCORRECT_CREDENTIALS" };
+  }
+}
+
 exports.customerLogin = customerLogin;
+exports.restaurantLogin = restaurantLogin;
