@@ -1,6 +1,7 @@
 const express = require('express');
-const graphqlHTTP = require('express-graphql');
+const { graphqlHTTP } = require('express-graphql');
 const cors = require('cors');
+const schema = require('./schema/schema');
 const app = express();
 const connectDB = require('./config/db');
 
@@ -18,6 +19,10 @@ app.use(function(req, res, next) {
 // Connect to the database
 connectDB();
 
+app.use("/graphql", graphqlHTTP({
+  schema,
+  graphiql: true
+}));
 
 app.listen(3002, ()=>{
     console.log("GraphQL server started on port 3001");
