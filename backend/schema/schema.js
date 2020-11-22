@@ -3,6 +3,7 @@ const { resolve } = require('path');
 const User = require('../models/UserModel');
 
 const { customerSignup, restaurantSignup } = require('../mutations/signup');
+const { customerLogin } = require('../mutations/login');
 
 const {
   GraphQLObjectType,
@@ -73,6 +74,16 @@ const Mutation = new GraphQLObjectType({
         },
         async resolve(parent, args) {
           return restaurantSignup(args);
+        }
+      },
+      loginCustomer: {
+        type: StatusType,
+        args: {
+            email: { type: GraphQLString },
+            password: { type: GraphQLString },
+        },
+        resolve(parent, args) {
+            return customerLogin(args);
         }
       }
   }
