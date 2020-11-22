@@ -23,6 +23,36 @@ const UserType = new GraphQLObjectType({
       password: { type: GraphQLString },
       image: { type: GraphQLString },
       phone: { type: GraphQLString },
+      dob: { type: GraphQLString },
+      city: { type: GraphQLString },
+      state: { type: GraphQLString },
+      country: { type: GraphQLString },
+      nickname: { type: GraphQLString },
+      headline: { type: GraphQLString },
+      thingsILove: { type: GraphQLString },
+      findMeIn: { type: GraphQLString },
+      myBlog: { type: GraphQLString },
+      notYelping: { type: GraphQLString },
+      whyMyReviews: { type: GraphQLString },
+      discovery: { type: GraphQLString },
+      reviews : {
+        type: new GraphQLList(ReviewType),
+        resolve(parent, args) {
+            return parent.customerReviews;
+        }
+      }
+  })
+});
+
+const ReviewType = new GraphQLObjectType({
+  name: 'Reviews',
+  fields: () => ({
+      _id: { type: GraphQLID },
+      restaurant: { type: GraphQLID },
+      rating: { type: GraphQLInt },
+      text: { type: GraphQLString },
+      date: { type: GraphQLString },
+      
   })
 });
 
@@ -46,6 +76,17 @@ const RootQuery = new GraphQLObjectType({
                   return user;
               }
           }
+      },
+      customerReviews: {
+        type: new GraphQLList(ReviewType),
+          args: { user_id: { type: GraphQLString } },
+          async resolve(parent, args) {
+              let user = await User.findById(args.user_id);
+              console.log('here');
+              if (user.reviews) {
+                  return user.reviews;
+              }
+        }
       }
     }
   });

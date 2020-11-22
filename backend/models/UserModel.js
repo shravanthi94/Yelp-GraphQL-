@@ -6,52 +6,40 @@ const UserSchema = new mongoose.Schema({
   password: { type: String, required: true },
   image: { type: String },
   phone: { type: String },
-  about: {
-    dob: {
-      type: Date,
-      default: '',
-    },
+  dob: { type: Date },
     city: {
       type: String,
-      default: '',
     },
     state: {
       type: String,
-      default: '',
     },
     country: {
       type: String,
-      default: '',
     },
     nickname: {
       type: String,
-      default: '',
+    },
+    headline: {
+      type: String,
     },
     thingsILove: {
       type: String,
-      default: '',
     },
     findMeIn: {
       type: String,
-      default: '',
     },
     myBlog: {
       type: String,
-      default: '',
     },
     notYelping: {
       type: String,
-      default: '',
     },
     whyMyReviews: {
       type: String,
-      default: '',
     },
     discovery: {
       type: String,
-      default: '',
     },
-  },
   reviews: [
     {
       restaurant: {
