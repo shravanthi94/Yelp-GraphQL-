@@ -7,7 +7,7 @@ const { customerSignup, restaurantSignup } = require('../mutations/signup');
 const { customerLogin, restaurantLogin } = require('../mutations/login');
 const { updateCustomer, addReview } = require('../mutations/profile');
 const { updateRestaurant, addMenu, updateMenu } = require('../mutations/menu');
-const { placeOrder } = require('../mutations/order');
+const { placeOrder, updateOrder, cancelOrder } = require('../mutations/order');
 
 const {
   GraphQLObjectType,
@@ -330,6 +330,25 @@ const Mutation = new GraphQLObjectType({
       },
       resolve(parent, args) {
         return placeOrder(args);
+      },
+    },
+    updateOrder: {
+      type: StatusType,
+      args: {
+        id: { type: GraphQLID },
+        status: { type: GraphQLString },
+      },
+      resolve(parent, args) {
+        return updateOrder(args);
+      },
+    },
+    cancelOrder: {
+      type: StatusType,
+      args: {
+        id: { type: GraphQLID },
+      },
+      resolve(parent, args) {
+        return cancelOrder(args);
       },
     },
   },
