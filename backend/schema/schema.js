@@ -133,6 +133,15 @@ const RootQuery = new GraphQLObjectType({
         }
       },
     },
+    restaurants: {
+      type: RestaurantType,
+      async resolve(parent, args) {
+        let restaurants = await Restaurant.find();
+        if (restaurants) {
+          return restaurants;
+        }
+      },
+    },
     menu: {
       type: new GraphQLList(MenuType),
       args: { restaurant_id: { type: GraphQLString } },
