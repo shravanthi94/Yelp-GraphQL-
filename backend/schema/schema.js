@@ -1,6 +1,7 @@
 const graphql = require('graphql');
 const User = require('../models/UserModel');
 const Restaurant = require('../models/RestaurantModel');
+const Order = require('../models/OrderModel');
 
 const { customerSignup, restaurantSignup } = require('../mutations/signup');
 const { customerLogin, restaurantLogin } = require('../mutations/login');
@@ -93,6 +94,19 @@ const ReviewType = new GraphQLObjectType({
   }),
 });
 
+const OrderType = new GraphQLObjectType({
+  name: 'Orders',
+  fields: () => ({
+    customer: { type: GraphQLID },
+    restaurant: { type: GraphQLID },
+    item: { type: GraphQLString },
+    deliveryOption: { type: GraphQLString },
+    status: { type: GraphQLString },
+    type: { type: GraphQLString },
+    date: { type: GraphQLString },
+  }),
+});
+
 const StatusType = new GraphQLObjectType({
   name: 'Status',
   fields: () => ({
@@ -155,16 +169,23 @@ const RootQuery = new GraphQLObjectType({
         }
       },
     },
-    restaurantReviews: {
-      type: new GraphQLList(ReviewType),
+    customerOrders: {
+      type: new GraphQLList(OrderType),
+      args: { customerId: { type: GraphQLString } },
+      async resolve(parent, args) {
+        let orders = await Order.find({ customer: args.customerId });
+        if (orders) {
+          return orders;
+        }
+      },
+    },
+    restaurantOrders: {
+      type: new GraphQLList(OrderType),
       args: { restaurantId: { type: GraphQLString } },
       async resolve(parent, args) {
-        let reviews = await User.find({
-          'reviews.restaurant': args.restaurantId,
-        });
-        console.log(reviews);
-        if (reviews) {
-          return reviews;
+        let orders = await Order.find({ restaurant: args.restaurantId });
+        if (orders) {
+          return orders;
         }
       },
     },
