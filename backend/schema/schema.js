@@ -6,6 +6,7 @@ const { customerSignup, restaurantSignup } = require('../mutations/signup');
 const { customerLogin, restaurantLogin } = require('../mutations/login');
 const { updateCustomer } = require('../mutations/profile');
 const { updateRestaurant, addMenu, updateMenu } = require('../mutations/menu');
+const { placeOrder } = require('../mutations/order');
 
 const {
   GraphQLObjectType,
@@ -134,9 +135,10 @@ const RootQuery = new GraphQLObjectType({
       },
     },
     restaurants: {
-      type: RestaurantType,
+      type: new GraphQLList(RestaurantType),
+      args: { input: { type: GraphQLString } },
       async resolve(parent, args) {
-        let restaurants = await Restaurant.find();
+        let restaurants = await Restaurant.find().select('-password');
         if (restaurants) {
           return restaurants;
         }
@@ -281,6 +283,18 @@ const Mutation = new GraphQLObjectType({
       },
       resolve(parent, args) {
         return updateMenu(args);
+      },
+    },
+    placeOrder: {
+      type: StatusType,
+      args: {
+        customerId: { type: GraphQLID },
+        restaurantId: { type: GraphQLID },
+        item: { type: GraphQLString },
+        deliveryOption: { type: GraphQLString },
+      },
+      resolve(parent, args) {
+        return placeOrder(args);
       },
     },
   },
