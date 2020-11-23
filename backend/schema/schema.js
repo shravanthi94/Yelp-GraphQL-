@@ -4,7 +4,7 @@ const Restaurant = require('../models/RestaurantModel');
 
 const { customerSignup, restaurantSignup } = require('../mutations/signup');
 const { customerLogin, restaurantLogin } = require('../mutations/login');
-const { updateCustomer } = require('../mutations/profile');
+const { updateCustomer, addReview } = require('../mutations/profile');
 const { updateRestaurant, addMenu, updateMenu } = require('../mutations/menu');
 const { placeOrder } = require('../mutations/order');
 
@@ -37,23 +37,6 @@ const UserType = new GraphQLObjectType({
     notYelping: { type: GraphQLString },
     whyMyReviews: { type: GraphQLString },
     discovery: { type: GraphQLString },
-    reviews: {
-      type: new GraphQLList(ReviewType),
-      resolve(parent, args) {
-        return parent.customerReviews;
-      },
-    },
-    date: { type: GraphQLString },
-  }),
-});
-
-const ReviewType = new GraphQLObjectType({
-  name: 'Reviews',
-  fields: () => ({
-    _id: { type: GraphQLID },
-    restaurant: { type: GraphQLID },
-    rating: { type: GraphQLInt },
-    text: { type: GraphQLString },
     date: { type: GraphQLString },
   }),
 });
@@ -74,7 +57,14 @@ const RestaurantType = new GraphQLObjectType({
     menu: {
       type: new GraphQLList(MenuType),
       resolve(parent, args) {
-        return parent.Menu;
+        return parent.menu;
+      },
+    },
+    reviews: {
+      type: new GraphQLList(ReviewType),
+      resolve(parent, args) {
+        console.log('came resolve');
+        return parent.reviews;
       },
     },
     date: { type: GraphQLString },
@@ -89,6 +79,17 @@ const MenuType = new GraphQLObjectType({
     price: { type: GraphQLString },
     description: { type: GraphQLString },
     category: { type: GraphQLString },
+  }),
+});
+
+const ReviewType = new GraphQLObjectType({
+  name: 'Reviews',
+  fields: () => ({
+    _id: { type: GraphQLID },
+    restaurant: { type: GraphQLID },
+    rating: { type: GraphQLInt },
+    text: { type: GraphQLString },
+    date: { type: GraphQLString },
   }),
 });
 
@@ -113,7 +114,7 @@ const RootQuery = new GraphQLObjectType({
         }
       },
     },
-    customerReviews: {
+    reviews: {
       type: new GraphQLList(ReviewType),
       args: { user_id: { type: GraphQLString } },
       async resolve(parent, args) {
@@ -159,8 +160,9 @@ const RootQuery = new GraphQLObjectType({
       args: { restaurantId: { type: GraphQLString } },
       async resolve(parent, args) {
         let reviews = await User.find({
-          'reviews.restaurant': restaurantId,
-        }).select('name reviews');
+          'reviews.restaurant': args.restaurantId,
+        });
+        console.log(reviews);
         if (reviews) {
           return reviews;
         }
@@ -283,6 +285,18 @@ const Mutation = new GraphQLObjectType({
       },
       resolve(parent, args) {
         return updateMenu(args);
+      },
+    },
+    addReview: {
+      type: StatusType,
+      args: {
+        customerId: { type: GraphQLID },
+        restaurantId: { type: GraphQLID },
+        rating: { type: GraphQLInt },
+        text: { type: GraphQLString },
+      },
+      resolve(parent, args) {
+        return addReview(args);
       },
     },
     placeOrder: {
