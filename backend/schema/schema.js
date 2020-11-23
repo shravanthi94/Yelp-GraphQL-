@@ -1,12 +1,11 @@
 const graphql = require('graphql');
-const { resolve } = require('path');
 const User = require('../models/UserModel');
-const Restarant = require('../models/RestaurantModel');
+const Restaurant = require('../models/RestaurantModel');
 
 const { customerSignup, restaurantSignup } = require('../mutations/signup');
 const { customerLogin, restaurantLogin } = require('../mutations/login');
 const { updateCustomer } = require('../mutations/profile');
-const Restaurant = require('../models/RestaurantModel');
+const { updateRestaurant, addMenu } = require('../mutations/menu');
 
 const {
   GraphQLObjectType,
@@ -216,6 +215,37 @@ const Mutation = new GraphQLObjectType({
       },
       resolve(parent, args) {
         return updateCustomer(args);
+      },
+    },
+    updateRestaurant: {
+      type: StatusType,
+      args: {
+        id: { type: GraphQLID },
+        name: { type: GraphQLString },
+        email: { type: GraphQLString },
+        phone: { type: GraphQLString },
+        location: { type: GraphQLString },
+        description: { type: GraphQLString },
+        cuisine: { type: GraphQLString },
+        deliveryMethod: { type: GraphQLString },
+        timings: { type: GraphQLString },
+      },
+      resolve(parent, args) {
+        return updateRestaurant(args);
+      },
+    },
+    addMenu: {
+      type: StatusType,
+      args: {
+        id: { type: GraphQLID },
+        name: { type: GraphQLString },
+        ingredients: { type: GraphQLString },
+        price: { type: GraphQLString },
+        description: { type: GraphQLString },
+        category: { type: GraphQLString },
+      },
+      resolve(parent, args) {
+        return addMenu(args);
       },
     },
   },
