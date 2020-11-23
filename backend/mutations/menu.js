@@ -50,5 +50,43 @@ const addMenu = async (args) => {
   }
 };
 
+const updateMenu = async (args) => {
+  const { id, itemId, name, ingredients, price, description, category } = args;
+
+  //   const restaurant = await Restaurant.updateOne(
+  //     { _id: id, 'menu.name': name },
+  //     {
+  //       $set: {
+  //         'menu.name': name,
+  //         'menu.ingredients': ingredients,
+  //         'menu.price': price,
+  //         'menu.description': description,
+  //         'menu.category': category,
+  //       },
+  //     },
+  //   );
+
+  const restaurant = await Restaurant.findById(id);
+
+  restaurant.menu.forEach((item) => {
+    if (item._id.toString() === itemId) {
+      item.name = name;
+      item.ingredients = ingredients;
+      item.price = price;
+      item.description = description;
+      item.category = category;
+    }
+  });
+
+  const savedRestaurant = await restaurant.save();
+
+  if (savedRestaurant) {
+    return { status: 200, message: 'MENU_UPDATED' };
+  } else {
+    return { status: 500, message: 'INTERNAL_SERVER_ERROR' };
+  }
+};
+
 exports.addMenu = addMenu;
 exports.updateRestaurant = updateRestaurant;
+exports.updateMenu = updateMenu;

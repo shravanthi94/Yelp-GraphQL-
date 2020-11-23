@@ -5,7 +5,7 @@ const Restaurant = require('../models/RestaurantModel');
 const { customerSignup, restaurantSignup } = require('../mutations/signup');
 const { customerLogin, restaurantLogin } = require('../mutations/login');
 const { updateCustomer } = require('../mutations/profile');
-const { updateRestaurant, addMenu } = require('../mutations/menu');
+const { updateRestaurant, addMenu, updateMenu } = require('../mutations/menu');
 
 const {
   GraphQLObjectType,
@@ -83,7 +83,6 @@ const RestaurantType = new GraphQLObjectType({
 const MenuType = new GraphQLObjectType({
   name: 'Menu',
   fields: () => ({
-    id: { type: GraphQLID },
     name: { type: GraphQLString },
     ingredients: { type: GraphQLString },
     price: { type: GraphQLString },
@@ -246,6 +245,21 @@ const Mutation = new GraphQLObjectType({
       },
       resolve(parent, args) {
         return addMenu(args);
+      },
+    },
+    updateMenu: {
+      type: StatusType,
+      args: {
+        id: { type: GraphQLID },
+        itemId: { type: GraphQLID },
+        name: { type: GraphQLString },
+        ingredients: { type: GraphQLString },
+        price: { type: GraphQLString },
+        description: { type: GraphQLString },
+        category: { type: GraphQLString },
+      },
+      resolve(parent, args) {
+        return updateMenu(args);
       },
     },
   },

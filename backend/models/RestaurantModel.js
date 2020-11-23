@@ -12,7 +12,6 @@ const RestaurantSchema = new mongoose.Schema({
   deliveryMethod: { type: String },
   menu: [
     {
-      id: { type: mongoose.ObjectId },
       name: { type: String, required: true },
       ingredients: { type: String, required: true },
       price: { type: String },
