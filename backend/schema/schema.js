@@ -4,6 +4,7 @@ const User = require('../models/UserModel');
 
 const { customerSignup, restaurantSignup } = require('../mutations/signup');
 const { customerLogin, restaurantLogin } = require('../mutations/login');
+const { updateCustomer } = require('../mutations/profile');
 
 const {
   GraphQLObjectType,
@@ -135,6 +136,30 @@ const Mutation = new GraphQLObjectType({
         },
         resolve(parent, args) {
             return restaurantLogin(args);
+        }
+      },
+      updateCustomer: {
+        type: StatusType,
+        args: {
+          id: {type: GraphQLID },
+          name: { type: GraphQLString },
+          email: { type: GraphQLString },
+          phone: { type: GraphQLString },
+          dob: { type: GraphQLString },
+          city: { type: GraphQLString },
+          state: { type: GraphQLString },
+          country: { type: GraphQLString },
+          nickname: { type: GraphQLString },
+          headline: { type: GraphQLString },
+          thingsILove: { type: GraphQLString },
+          findMeIn: { type: GraphQLString },
+          myBlog: { type: GraphQLString },
+          notYelping: { type: GraphQLString },
+          whyMyReviews: { type: GraphQLString },
+          discovery: { type: GraphQLString },
+        },
+        resolve(parent, args) {
+          return updateCustomer(args);
         }
       }
   }
