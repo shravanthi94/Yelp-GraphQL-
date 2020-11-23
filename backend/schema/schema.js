@@ -143,6 +143,18 @@ const RootQuery = new GraphQLObjectType({
         }
       },
     },
+    restaurantReviews: {
+      type: new GraphQLList(ReviewType),
+      args: { restaurantId: { type: GraphQLString } },
+      async resolve(parent, args) {
+        let reviews = await User.find({
+          'reviews.restaurant': restaurantId,
+        }).select('name reviews');
+        if (reviews) {
+          return reviews;
+        }
+      },
+    },
   },
 });
 
