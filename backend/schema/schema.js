@@ -5,7 +5,11 @@ const Order = require('../models/OrderModel');
 
 const { customerSignup, restaurantSignup } = require('../mutations/signup');
 const { customerLogin, restaurantLogin } = require('../mutations/login');
-const { updateCustomer, addReview } = require('../mutations/profile');
+const {
+  updateCustomer,
+  addReview,
+  restaurantSearch,
+} = require('../mutations/profile');
 const { updateRestaurant, addMenu, updateMenu } = require('../mutations/menu');
 const { placeOrder, updateOrder, cancelOrder } = require('../mutations/order');
 
@@ -187,6 +191,13 @@ const RootQuery = new GraphQLObjectType({
         if (orders) {
           return orders;
         }
+      },
+    },
+    restaurantSearch: {
+      type: new GraphQLList(RestaurantType),
+      args: { searchData: { type: GraphQLString } },
+      resolve(parent, args) {
+        return restaurantSearch(args);
       },
     },
   },

@@ -51,5 +51,22 @@ const addReview = async (args) => {
   }
 };
 
+const restaurantSearch = async (args) => {
+  const { searchData } = args;
+  const restaurants = await Restaurant.find({
+    $or: [
+      { name: { $regex: `.*${searchData}.*` } },
+      { location: { $regex: `.*${searchData}.*` } },
+      { 'menu.name': { $regex: `.*${searchData}.*` } },
+      { cuisine: { $regex: `.*${searchData}.*` } },
+      { deliveryMethod: { $regex: `.*${searchData}.*` } },
+    ],
+  });
+  if (restaurants) {
+    return restaurants;
+  }
+};
+
 exports.updateCustomer = updateCustomer;
 exports.addReview = addReview;
+exports.restaurantSearch = restaurantSearch;
