@@ -9,6 +9,9 @@ import backendURI from './webConfig';
 import Navbar from './components/Navbar';
 import LandingPage from './components/LandingPage';
 
+// Customer Links
+import Login from './components/customer/Login';
+
 // Apollo client setup
 const client = new ApolloClient({
   uri: `${backendURI}/graphql`,
@@ -22,7 +25,9 @@ function App() {
           <Navbar />
           <Route exact path='/' component={LandingPage} />
           <section className='max-container'>
-            <Switch></Switch>
+            <Switch>
+              <Route exact path='/login' component={Login} />
+            </Switch>
           </section>
         </Fragment>
       </BrowserRouter>
