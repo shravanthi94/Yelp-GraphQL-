@@ -1,0 +1,6 @@
+/* Utilities */
+.max-container {
+  max-width: 1700px;
+  margin: 6rem 10rem 3rem 10rem;
+  /* margin-bottom: 3rem; */
+}
