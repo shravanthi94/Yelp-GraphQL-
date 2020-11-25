@@ -54,10 +54,11 @@ const Login = ({ loginCustomerMutation }) => {
     console.log(token);
     localStorage.setItem('token', token);
     var decoded = jwt_decode(token);
-    localStorage.setItem('user', decoded.id);
-    localStorage.setItem('name', decoded.name);
-    localStorage.setItem('email', decoded.email);
-    localStorage.setItem('usertype', decoded.usertype);
+    console.log(decoded);
+    localStorage.setItem('user', decoded.user.id);
+    localStorage.setItem('name', decoded.user.name);
+    localStorage.setItem('email', decoded.user.email);
+    localStorage.setItem('usertype', decoded.user.usertype);
   }
 
   return results.success === true ? (
