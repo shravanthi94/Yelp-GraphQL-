@@ -11,4 +11,13 @@ const loginCustomerMutation = gql`
   }
 `;
 
-export { loginCustomerMutation };
+const signupCustomerMutation = gql`
+  mutation($name: String, $email: String, $password: String) {
+    addCustomer(name: $name, email: $email, password: $password) {
+      message
+      status
+    }
+  }
+`;
+
+export { loginCustomerMutation, signupCustomerMutation };

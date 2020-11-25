@@ -11,6 +11,7 @@ import LandingPage from './components/LandingPage';
 
 // Customer Links
 import Login from './components/customer/Login';
+import Signup from './components/customer/Signup';
 
 // Apollo client setup
 const client = new ApolloClient({
@@ -27,6 +28,7 @@ function App() {
           <section className='max-container'>
             <Switch>
               <Route exact path='/login' component={Login} />
+              <Route exact path='/signup' component={Signup} />
             </Switch>
           </section>
         </Fragment>
