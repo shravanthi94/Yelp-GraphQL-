@@ -4,8 +4,9 @@ import { Redirect } from 'react-router';
 import { graphql } from 'react-apollo';
 import { loginCustomerMutation } from '../../mutations/mutations';
 import '../../CSS/form.css';
+import jwt_decode from 'jwt-decode';
 
-const Login = () => {
+const Login = ({ loginCustomerMutation }) => {
   const [formData, setformData] = useState({
     email: '',
     password: '',
@@ -21,18 +22,6 @@ const Login = () => {
     message: '',
   });
 
-  if (
-    (localStorage.token && localStorage.usertype === 'customer') ||
-    results.success === true
-  ) {
-    <Redirect to='/profile' />;
-  } else if (
-    (localStorage.token && localStorage.usertype === 'restaurant') ||
-    results.success === true
-  ) {
-    <Redirect to='/restaurant/profile' />;
-  }
-
   const onSubmit = async (e) => {
     e.preventDefault();
     console.log('here 1');
@@ -44,12 +33,12 @@ const Login = () => {
     });
     console.log('here 2', mutationResponse);
     if (mutationResponse) {
-      const response = mutationResponse.data.login;
+      const response = mutationResponse.data.loginCustomer;
       if (response) {
         if (response.status === '200') {
           setResults({
             success: true,
-            data: response.message,
+            message: response.message,
           });
         } else {
           setResults({
@@ -60,7 +49,20 @@ const Login = () => {
     }
   };
 
-  return (
+  if (results.success === true) {
+    let token = results.message;
+    console.log(token);
+    localStorage.setItem('token', token);
+    var decoded = jwt_decode(token);
+    localStorage.setItem('user', decoded.id);
+    localStorage.setItem('name', decoded.name);
+    localStorage.setItem('email', decoded.email);
+    localStorage.setItem('usertype', decoded.usertype);
+  }
+
+  return results.success === true ? (
+    <Redirect to='/profile' />
+  ) : (
     <Fragment>
       <div className='columns'>
         <div className='column is-two-fifths'>
