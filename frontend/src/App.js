@@ -12,6 +12,7 @@ import LandingPage from './components/LandingPage';
 // Customer Links
 import Login from './components/customer/Login';
 import Signup from './components/customer/Signup';
+import Profile from './components/customer/Profile';
 
 // Apollo client setup
 const client = new ApolloClient({
@@ -29,6 +30,7 @@ function App() {
             <Switch>
               <Route exact path='/login' component={Login} />
               <Route exact path='/signup' component={Signup} />
+              <Route exact path='/profile' component={Profile} />
             </Switch>
           </section>
         </Fragment>

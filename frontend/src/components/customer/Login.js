@@ -24,14 +24,14 @@ const Login = ({ loginCustomerMutation }) => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    console.log('here 1');
+
     const mutationResponse = await loginCustomerMutation({
       variables: {
         email: email,
         password: password,
       },
     });
-    console.log('here 2', mutationResponse);
+
     if (mutationResponse) {
       const response = mutationResponse.data.loginCustomer;
       if (response) {
@@ -47,6 +47,8 @@ const Login = ({ loginCustomerMutation }) => {
         }
       }
     }
+
+    window.location.reload();
   };
 
   if (results.success === true) {
