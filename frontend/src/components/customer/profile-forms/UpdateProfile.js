@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { graphql } from 'react-apollo';
 import { flowRight as compose } from 'lodash';
@@ -10,6 +10,7 @@ import styles from './form.module.css';
 const UpdateProfile = ({
   data: { customer: profile },
   updateCustomerMutation,
+  getCustomerQuery,
 }) => {
   const [formData, setformData] = useState({
     name: '',
@@ -47,10 +48,16 @@ const UpdateProfile = ({
     recentDiscovery,
   } = formData;
 
-  const onChange = (e) =>
-    setformData({ ...formData, [e.target.name]: e.target.value });
+  useEffect(() => {
+    setformData({
+      name: profile.name ? profile.name : '',
+      city: profile.city && profile.city,
+    });
+  }, [profile]);
 
-  console.log('calling mutation ', profile);
+  const onChange = (e) => {
+    setformData({ ...formData, [e.target.name]: e.target.value });
+  };
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -58,7 +65,7 @@ const UpdateProfile = ({
     console.log('calling mutation ', profile);
     console.log('user: ', localStorage.getItem('user'));
 
-    let mutationResponse = await updateCustomerMutation({
+    const mutationResponse = await updateCustomerMutation({
       variables: {
         id: localStorage.getItem('user'),
         name: name || profile.name,
@@ -89,6 +96,7 @@ const UpdateProfile = ({
 
     if (mutationResponse) {
       const response = mutationResponse.data.updateCustomer;
+      console.log('ResL: ', response);
       if (response) {
         if (response.status === '200') {
           setsuccess(true);
@@ -100,6 +108,7 @@ const UpdateProfile = ({
   };
 
   if (success === true) {
+    console.log('Came here on success');
     <Redirect to='/profile' />;
   }
 
@@ -145,7 +154,7 @@ const UpdateProfile = ({
               className={styles.my_text}
               type='text'
               name='city'
-              value={profile.city ? profile.city : city}
+              value={city}
               onChange={(e) => onChange(e)}
             />
           </div>

@@ -252,7 +252,7 @@ const Mutation = new GraphQLObjectType({
     updateCustomer: {
       type: StatusType,
       args: {
-        id: { type: GraphQLID },
+        id: { type: GraphQLString },
         name: { type: GraphQLString },
         email: { type: GraphQLString },
         phone: { type: GraphQLString },

@@ -20,7 +20,7 @@ const signupCustomerMutation = gql`
 
 console.log('calling mutation 2');
 const updateCustomerMutation = gql`
-  mutation updateCustomer(
+  mutation(
     $id: String
     $name: String
     $email: String
@@ -42,7 +42,6 @@ const updateCustomerMutation = gql`
       id: $id
       name: $name
       email: $email
-      password: $password
       dob: $dob
       city: $city
       state: $state

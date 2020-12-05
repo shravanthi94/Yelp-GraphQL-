@@ -2,6 +2,7 @@ const User = require('../models/UserModel');
 const Restaurant = require('../models/RestaurantModel');
 
 const updateCustomer = async (args) => {
+  console.log('backend');
   let user = await User.findById(args.id);
   if (user) {
     if (args.name) user.name = args.name;
