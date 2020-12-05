@@ -4,13 +4,12 @@ import { graphql } from 'react-apollo';
 import { flowRight as compose } from 'lodash';
 import { getCustomerQuery } from '../../../queries/query';
 import { updateCustomerMutation } from '../../../mutations/mutations';
-import spinner from '../../layout/Spinner';
+// import spinner from '../../layout/Spinner';
 import styles from './form.module.css';
 
 const UpdateProfile = ({
   data: { customer: profile },
   updateCustomerMutation,
-  getCustomerQuery,
 }) => {
   const [formData, setformData] = useState({
     name: '',
@@ -84,12 +83,12 @@ const UpdateProfile = ({
         whyReadMyReviews: whyReadMyReviews || profile.whyReadMyReviews,
         recentDiscovery: recentDiscovery || profile.recentDiscovery,
       },
-      refetchQueries: [
-        {
-          query: getCustomerQuery,
-          variables: { user_id: localStorage.getItem('user') },
-        },
-      ],
+      // refetchQueries: [
+      //   {
+      //     query: getCustomerQuery,
+      //     variables: { user_id: localStorage.getItem('user') },
+      //   },
+      // ],
     });
 
     console.log(mutationResponse);
@@ -107,13 +106,8 @@ const UpdateProfile = ({
     }
   };
 
-  if (success === true) {
-    console.log('Came here on success');
-    <Redirect to='/profile' />;
-  }
-
-  return !profile ? (
-    spinner
+  return success === true ? (
+    <Redirect to='/profile' />
   ) : (
     <Fragment>
       <div className='container profile-title'>

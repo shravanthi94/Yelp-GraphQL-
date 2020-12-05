@@ -15,6 +15,10 @@ import Signup from './components/customer/Signup';
 import Profile from './components/customer/Profile';
 import UpdateProfile from './components/customer/profile-forms/UpdateProfile';
 
+// Restaurant Links
+import SignupRes from './components/restaurant/Signup';
+import LoginRes from './components/restaurant/Login';
+
 // Apollo client setup
 const client = new ApolloClient({
   uri: `${backendURI}/graphql`,
@@ -31,6 +35,8 @@ function App() {
             <Switch>
               <Route exact path='/login' component={Login} />
               <Route exact path='/signup' component={Signup} />
+              <Route exact path='/restaurant/signup' component={SignupRes} />
+              <Route exact path='/restaurant/login' component={LoginRes} />
               <Route exact path='/profile' component={Profile} />
               <Route
                 exact

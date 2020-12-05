@@ -18,6 +18,34 @@ const signupCustomerMutation = gql`
   }
 `;
 
+const loginRestaurantMutation = gql`
+  mutation($email: String, $password: String) {
+    loginRestaurant(email: $email, password: $password) {
+      message
+      status
+    }
+  }
+`;
+
+const signupRestaurantMutation = gql`
+  mutation(
+    $name: String
+    $email: String
+    $password: String
+    $location: String
+  ) {
+    addRestaurant(
+      name: $name
+      email: $email
+      password: $password
+      location: $location
+    ) {
+      message
+      status
+    }
+  }
+`;
+
 console.log('calling mutation 2');
 const updateCustomerMutation = gql`
   mutation(
@@ -65,5 +93,7 @@ const updateCustomerMutation = gql`
 export {
   loginCustomerMutation,
   signupCustomerMutation,
+  loginRestaurantMutation,
+  signupRestaurantMutation,
   updateCustomerMutation,
 };
