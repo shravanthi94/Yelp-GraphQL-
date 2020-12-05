@@ -22,4 +22,14 @@ const getCustomerQuery = gql`
   }
 `;
 
-export { getCustomerQuery };
+const getRestaurantsQuery = gql`
+  query {
+    restaurants {
+      id
+      name
+      email
+    }
+  }
+`;
+
+export { getCustomerQuery, getRestaurantsQuery };

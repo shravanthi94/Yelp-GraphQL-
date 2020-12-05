@@ -104,6 +104,7 @@ const UpdateProfile = ({
         }
       }
     }
+    window.location.reload();
   };
 
   return success === true ? (

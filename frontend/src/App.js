@@ -18,6 +18,7 @@ import UpdateProfile from './components/customer/profile-forms/UpdateProfile';
 // Restaurant Links
 import SignupRes from './components/restaurant/Signup';
 import LoginRes from './components/restaurant/Login';
+import AllRestaurants from './components/restaurant/AllRestaurants';
 
 // Apollo client setup
 const client = new ApolloClient({
@@ -42,6 +43,11 @@ function App() {
                 exact
                 path='/customer/profile/update'
                 component={UpdateProfile}
+              />
+              <Route
+                exact
+                path='/customer/restaurants'
+                component={AllRestaurants}
               />
             </Switch>
           </section>

@@ -72,10 +72,10 @@ const Profile = ({ data: { customer: profile } }) => {
             <Link to='/customer/profile/update' className='btn-update'>
               <i class='fas fa-address-card'></i> Update Basics
             </Link>
-            <Link to='/update/about' className='btn-update'>
+            <Link to='/profile' className='btn-update'>
               <i class='fas fa-user'></i> Update About
             </Link>
-            <Link to='/update/contact' className='btn-update'>
+            <Link to='/profile' className='btn-update'>
               <i class='fas fa-phone-alt'></i> Update Contact
             </Link>
           </div>
