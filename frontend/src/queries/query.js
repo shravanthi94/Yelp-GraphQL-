@@ -32,4 +32,13 @@ const getRestaurantsQuery = gql`
   }
 `;
 
-export { getCustomerQuery, getRestaurantsQuery };
+const getRestaurantQuery = gql`
+  query($restaurant_id: String) {
+    restaurant(restaurant_id: $restaurant_id) {
+      name
+      email
+    }
+  }
+`;
+
+export { getCustomerQuery, getRestaurantsQuery, getRestaurantQuery };
