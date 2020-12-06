@@ -4,6 +4,7 @@ import { graphql } from 'react-apollo';
 import { flowRight as compose } from 'lodash';
 import { getRestaurantQuery } from '../../queries/query';
 import spinner from '../layout/Spinner';
+import Reviews from './Reviews';
 import '../../CSS/dashboard.css';
 import imgSrc from '../../images/placeholderimg.jpg';
 
@@ -48,7 +49,7 @@ const Dashboard = ({ data: { restaurant } }) => {
           )}
           <hr />
           <h2 className='activity'>Popular Reviews</h2>
-          {/* {restaurant._id && <Reviews restaurantId={restaurant._id} />} */}
+          <Reviews reviews={restaurant.reviews} />
         </div>
         <div className='right-dash'>
           <h3 className='right-heading'>Updates</h3>

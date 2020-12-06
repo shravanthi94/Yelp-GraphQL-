@@ -24,15 +24,15 @@ const RestaurantSchema = new mongoose.Schema({
       customer: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user',
-        required: true,
+      },
+      name: {
+        type: String,
       },
       rating: {
         type: Number,
-        required: true,
       },
       text: {
         type: String,
-        required: true,
       },
       date: {
         type: Date,

@@ -73,6 +73,7 @@ const getRestaurantQuery = gql`
       }
       reviews {
         customer
+        name
         rating
         text
         date
@@ -81,4 +82,22 @@ const getRestaurantQuery = gql`
   }
 `;
 
-export { getCustomerQuery, getRestaurantsQuery, getRestaurantQuery };
+const getReviewsQuery = gql`
+  query($restaurant_id: String) {
+    reviews(restaurant_id: $restaurant_id) {
+      id
+      customer
+      name
+      rating
+      text
+      date
+    }
+  }
+`;
+
+export {
+  getCustomerQuery,
+  getRestaurantsQuery,
+  getRestaurantQuery,
+  getReviewsQuery,
+};

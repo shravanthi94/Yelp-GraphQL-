@@ -69,7 +69,6 @@ const RestaurantType = new GraphQLObjectType({
     reviews: {
       type: new GraphQLList(ReviewType),
       resolve(parent, args) {
-        console.log('came resolve');
         return parent.reviews;
       },
     },
@@ -92,8 +91,9 @@ const MenuType = new GraphQLObjectType({
 const ReviewType = new GraphQLObjectType({
   name: 'Reviews',
   fields: () => ({
-    _id: { type: GraphQLID },
+    id: { type: GraphQLString },
     customer: { type: GraphQLString },
+    name: { type: GraphQLString },
     rating: { type: GraphQLInt },
     text: { type: GraphQLString },
     date: { type: GraphQLString },

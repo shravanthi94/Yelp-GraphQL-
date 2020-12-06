@@ -33,10 +33,11 @@ const updateCustomer = async (args) => {
 };
 
 const addReview = async (args) => {
-  const { customerId, restaurantId, rating, text } = args;
+  const { customerId, restaurantId, rating, text, name } = args;
   const restaurant = await Restaurant.findById(restaurantId);
   const newReview = {
     customer: customerId,
+    name,
     rating,
     text,
   };
