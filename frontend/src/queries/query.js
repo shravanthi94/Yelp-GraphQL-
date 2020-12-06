@@ -54,6 +54,7 @@ const getRestaurantsQuery = gql`
 const getRestaurantQuery = gql`
   query($restaurant_id: String) {
     restaurant(restaurant_id: $restaurant_id) {
+      id
       name
       email
       phone

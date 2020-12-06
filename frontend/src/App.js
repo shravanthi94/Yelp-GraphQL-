@@ -24,6 +24,7 @@ import UpdateRestaurant from './components/restaurant/Dashboard-forms/UpdateRest
 import Menu from './components/restaurant/Menu';
 import AddDish from './components/restaurant/Dashboard-forms/AddMenu';
 import UpdateDish from './components/restaurant/Dashboard-forms/UpdateMenu';
+import Restaurant from './components/restaurant/Restaurant';
 
 // Apollo client setup
 const client = new ApolloClient({
@@ -67,6 +68,7 @@ function App() {
                 path='/restaurant/item/update'
                 component={UpdateDish}
               />
+              <Route exact path='/restaurant/details' component={Restaurant} />
             </Switch>
           </section>
         </Fragment>

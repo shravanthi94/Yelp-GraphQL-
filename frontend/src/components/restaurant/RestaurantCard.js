@@ -26,7 +26,10 @@ const RestaurantCard = ({ restaurant }) => {
                       <strong>
                         <Link
                           className={styles.rest_name}
-                          to={`/restaurant/details/${restaurant.id}`}
+                          to={{
+                            pathname: '/restaurant/details',
+                            state: { restaurant: restaurant },
+                          }}
                         >
                           {restaurant.name}
                         </Link>
