@@ -22,7 +22,7 @@ const Navbar = () => {
   const authLinks = (
     <div className='right-nav'>
       {localStorage.usertype === 'restaurant' ? (
-        <Link to='/restaurant/profile' className='header-nav-link'>
+        <Link to='/dashboard' className='header-nav-link'>
           <i className='fas fa-user'></i> Dashboard
         </Link>
       ) : (

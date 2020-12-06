@@ -53,6 +53,7 @@ const RestaurantType = new GraphQLObjectType({
     name: { type: GraphQLString },
     email: { type: GraphQLString },
     password: { type: GraphQLString },
+    phone: { type: GraphQLString },
     location: { type: GraphQLString },
     description: { type: GraphQLString },
     timings: { type: GraphQLString },
@@ -276,7 +277,7 @@ const Mutation = new GraphQLObjectType({
     updateRestaurant: {
       type: StatusType,
       args: {
-        id: { type: GraphQLID },
+        id: { type: GraphQLString },
         name: { type: GraphQLString },
         email: { type: GraphQLString },
         phone: { type: GraphQLString },

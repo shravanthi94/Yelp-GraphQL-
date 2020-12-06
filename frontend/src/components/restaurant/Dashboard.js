@@ -5,6 +5,7 @@ import { flowRight as compose } from 'lodash';
 import { getRestaurantQuery } from '../../queries/query';
 import spinner from '../layout/Spinner';
 import '../../CSS/dashboard.css';
+import imgSrc from '../../images/placeholderimg.jpg';
 
 const Dashboard = ({ data: { restaurant } }) => {
   return !restaurant ? (
@@ -13,6 +14,7 @@ const Dashboard = ({ data: { restaurant } }) => {
     <Fragment>
       <div className='container-dash'>
         <div className='left-dash'>
+          <img src={imgSrc} alt='Profile_pic' />
           <h3 className='title-dash'>{restaurant.name}</h3>
           <h3 className='sub-heading'>Contact information</h3>
           <h4 className='title-dash'>

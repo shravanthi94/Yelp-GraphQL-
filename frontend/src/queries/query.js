@@ -37,6 +37,13 @@ const getRestaurantQuery = gql`
     restaurant(restaurant_id: $restaurant_id) {
       name
       email
+      phone
+      timings
+      description
+      deliveryMethod
+      location
+      cuisine
+      date
     }
   }
 `;

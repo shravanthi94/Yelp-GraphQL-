@@ -1,6 +1,7 @@
 const Restaurant = require('../models/RestaurantModel');
 
 const updateRestaurant = async (args) => {
+  console.log('backend', args.id);
   let restaurant = await Restaurant.findById(args.id);
   if (restaurant) {
     if (args.name) restaurant.name = args.name;

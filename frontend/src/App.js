@@ -20,6 +20,7 @@ import SignupRes from './components/restaurant/Signup';
 import LoginRes from './components/restaurant/Login';
 import Dashboard from './components/restaurant/Dashboard';
 import AllRestaurants from './components/restaurant/AllRestaurants';
+import UpdateRestaurant from './components/restaurant/Dashboard-forms/UpdateRestaurant';
 
 // Apollo client setup
 const client = new ApolloClient({
@@ -50,6 +51,11 @@ function App() {
                 exact
                 path='/customer/restaurants'
                 component={AllRestaurants}
+              />
+              <Route
+                exact
+                path='/restaurant/update/basic'
+                component={UpdateRestaurant}
               />
             </Switch>
           </section>

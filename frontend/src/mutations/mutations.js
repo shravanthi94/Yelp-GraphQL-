@@ -46,7 +46,6 @@ const signupRestaurantMutation = gql`
   }
 `;
 
-console.log('calling mutation 2');
 const updateCustomerMutation = gql`
   mutation(
     $id: String
@@ -90,10 +89,40 @@ const updateCustomerMutation = gql`
   }
 `;
 
+const updateRestaurantMutation = gql`
+  mutation(
+    $id: String
+    $name: String
+    $email: String
+    $phone: String
+    $location: String
+    $description: String
+    $cuisine: String
+    $deliveryMethod: String
+    $timings: String
+  ) {
+    updateRestaurant(
+      id: $id
+      name: $name
+      email: $email
+      location: $location
+      phone: $phone
+      description: $description
+      cuisine: $cuisine
+      deliveryMethod: $deliveryMethod
+      timings: $timings
+    ) {
+      message
+      status
+    }
+  }
+`;
+
 export {
   loginCustomerMutation,
   signupCustomerMutation,
   loginRestaurantMutation,
   signupRestaurantMutation,
   updateCustomerMutation,
+  updateRestaurantMutation,
 };
