@@ -4,7 +4,6 @@ import { graphql } from 'react-apollo';
 import { flowRight as compose } from 'lodash';
 import { getRestaurantQuery } from '../../../queries/query';
 import { updateRestaurantMutation } from '../../../mutations/mutations';
-// import spinner from '../../layout/Spinner';
 import styles from './form.module.css';
 
 const UpdateRestaurant = ({
@@ -59,7 +58,7 @@ const UpdateRestaurant = ({
     const mutationResponse = await updateRestaurantMutation({
       variables: {
         id: localStorage.getItem('user'),
-        name: name || profile.name,
+        name: name ? name : profile.name,
         email: profile.email,
         phone: phone ? phone : profile.phone,
         location: location ? location : profile.location,

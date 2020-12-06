@@ -118,6 +118,29 @@ const updateRestaurantMutation = gql`
   }
 `;
 
+const addMenuItemMutation = gql`
+  mutation(
+    $id: String
+    $name: String
+    $ingredients: String
+    $description: String
+    $category: String
+    $price: String
+  ) {
+    addMenu(
+      id: $id
+      name: $name
+      ingredients: $ingredients
+      description: $description
+      category: $category
+      price: $price
+    ) {
+      message
+      status
+    }
+  }
+`;
+
 export {
   loginCustomerMutation,
   signupCustomerMutation,
@@ -125,4 +148,5 @@ export {
   signupRestaurantMutation,
   updateCustomerMutation,
   updateRestaurantMutation,
+  addMenuItemMutation,
 };

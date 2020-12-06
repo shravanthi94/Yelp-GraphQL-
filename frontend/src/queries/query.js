@@ -28,6 +28,25 @@ const getRestaurantsQuery = gql`
       id
       name
       email
+      location
+      phone
+      description
+      cuisine
+      deliveryMethod
+      timings
+      menu {
+        name
+        ingredients
+        price
+        description
+        category
+      }
+      reviews {
+        customer
+        rating
+        text
+        date
+      }
     }
   }
 `;
@@ -44,6 +63,19 @@ const getRestaurantQuery = gql`
       location
       cuisine
       date
+      menu {
+        name
+        ingredients
+        price
+        description
+        category
+      }
+      reviews {
+        customer
+        rating
+        text
+        date
+      }
     }
   }
 `;

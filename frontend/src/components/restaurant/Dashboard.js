@@ -8,6 +8,7 @@ import '../../CSS/dashboard.css';
 import imgSrc from '../../images/placeholderimg.jpg';
 
 const Dashboard = ({ data: { restaurant } }) => {
+  console.log('Restaurant: ', restaurant);
   return !restaurant ? (
     spinner
   ) : (

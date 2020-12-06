@@ -92,7 +92,7 @@ const ReviewType = new GraphQLObjectType({
   name: 'Reviews',
   fields: () => ({
     _id: { type: GraphQLID },
-    restaurant: { type: GraphQLID },
+    customer: { type: GraphQLString },
     rating: { type: GraphQLInt },
     text: { type: GraphQLString },
     date: { type: GraphQLString },
@@ -135,12 +135,12 @@ const RootQuery = new GraphQLObjectType({
     },
     reviews: {
       type: new GraphQLList(ReviewType),
-      args: { user_id: { type: GraphQLString } },
+      args: { restaurant_id: { type: GraphQLString } },
       async resolve(parent, args) {
-        let user = await User.findById(args.user_id);
+        let restaurant = await Restaurant.findById(args.restaurant_id);
         console.log('here');
-        if (user.reviews) {
-          return user.reviews;
+        if (restaurant.reviews) {
+          return restaurant.reviews;
         }
       },
     },
@@ -294,7 +294,7 @@ const Mutation = new GraphQLObjectType({
     addMenu: {
       type: StatusType,
       args: {
-        id: { type: GraphQLID },
+        id: { type: GraphQLString },
         name: { type: GraphQLString },
         ingredients: { type: GraphQLString },
         price: { type: GraphQLString },
@@ -308,8 +308,8 @@ const Mutation = new GraphQLObjectType({
     updateMenu: {
       type: StatusType,
       args: {
-        id: { type: GraphQLID },
-        itemId: { type: GraphQLID },
+        id: { type: GraphQLString },
+        itemId: { type: GraphQLString },
         name: { type: GraphQLString },
         ingredients: { type: GraphQLString },
         price: { type: GraphQLString },
@@ -323,8 +323,8 @@ const Mutation = new GraphQLObjectType({
     addReview: {
       type: StatusType,
       args: {
-        customerId: { type: GraphQLID },
-        restaurantId: { type: GraphQLID },
+        customerId: { type: GraphQLString },
+        restaurantId: { type: GraphQLString },
         rating: { type: GraphQLInt },
         text: { type: GraphQLString },
       },
@@ -335,8 +335,8 @@ const Mutation = new GraphQLObjectType({
     placeOrder: {
       type: StatusType,
       args: {
-        customerId: { type: GraphQLID },
-        restaurantId: { type: GraphQLID },
+        customerId: { type: GraphQLString },
+        restaurantId: { type: GraphQLString },
         item: { type: GraphQLString },
         deliveryOption: { type: GraphQLString },
       },
@@ -347,7 +347,7 @@ const Mutation = new GraphQLObjectType({
     updateOrder: {
       type: StatusType,
       args: {
-        id: { type: GraphQLID },
+        id: { type: GraphQLString },
         status: { type: GraphQLString },
       },
       resolve(parent, args) {
@@ -357,7 +357,7 @@ const Mutation = new GraphQLObjectType({
     cancelOrder: {
       type: StatusType,
       args: {
-        id: { type: GraphQLID },
+        id: { type: GraphQLString },
       },
       resolve(parent, args) {
         return cancelOrder(args);
