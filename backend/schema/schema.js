@@ -80,6 +80,7 @@ const RestaurantType = new GraphQLObjectType({
 const MenuType = new GraphQLObjectType({
   name: 'Menu',
   fields: () => ({
+    id: { type: GraphQLString },
     name: { type: GraphQLString },
     ingredients: { type: GraphQLString },
     price: { type: GraphQLString },

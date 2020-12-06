@@ -64,6 +64,7 @@ const getRestaurantQuery = gql`
       cuisine
       date
       menu {
+        id
         name
         ingredients
         price

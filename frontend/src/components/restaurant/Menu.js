@@ -30,7 +30,7 @@ const Menu = ({ location }) => {
                     className={styles['update-btn']}
                     to={{
                       pathname: '/restaurant/item/update',
-                      state: { itemId: item._id },
+                      state: { item: item },
                     }}
                   >
                     Update item
