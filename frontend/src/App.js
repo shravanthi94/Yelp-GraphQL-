@@ -21,6 +21,7 @@ import LoginRes from './components/restaurant/Login';
 import Dashboard from './components/restaurant/Dashboard';
 import AllRestaurants from './components/restaurant/AllRestaurants';
 import UpdateRestaurant from './components/restaurant/Dashboard-forms/UpdateRestaurant';
+import Menu from './components/restaurant/Menu';
 import AddDish from './components/restaurant/Dashboard-forms/AddMenu';
 
 // Apollo client setup
@@ -58,6 +59,7 @@ function App() {
                 path='/restaurant/update/basic'
                 component={UpdateRestaurant}
               />
+              <Route exact path='/restaurant/view/menu' component={Menu} />
               <Route exact path='/restaurant/add/dish' component={AddDish} />
             </Switch>
           </section>
