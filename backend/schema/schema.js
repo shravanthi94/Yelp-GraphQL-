@@ -105,6 +105,8 @@ const OrderType = new GraphQLObjectType({
   fields: () => ({
     customer: { type: GraphQLID },
     restaurant: { type: GraphQLID },
+    customerName: { type: GraphQLString },
+    restaurantName: { type: GraphQLString },
     item: { type: GraphQLString },
     deliveryOption: { type: GraphQLString },
     status: { type: GraphQLString },
@@ -339,6 +341,8 @@ const Mutation = new GraphQLObjectType({
       args: {
         customerId: { type: GraphQLString },
         restaurantId: { type: GraphQLString },
+        customerName: { type: GraphQLString },
+        restaurantName: { type: GraphQLString },
         item: { type: GraphQLString },
         deliveryOption: { type: GraphQLString },
       },

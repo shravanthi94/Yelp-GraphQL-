@@ -91,7 +91,7 @@ const Restaurant = ({ location }) => {
                     </Link>
                     <Link
                       to={{
-                        pathname: `/customer/placeorder/${id}`,
+                        pathname: `/customer/placeorder/${id}/${name}`,
                         state: { menu: menu },
                       }}
                       className={styles.top_btn}

@@ -58,13 +58,15 @@ const Profile = ({ data: { customer: profile } }) => {
             <Fragment>
               <h2 className='activity'>Don't forget to wish me on</h2>
               <h4 className='profile-title'>
-                <i class='fas fa-birthday-cake'></i>{' '}
-                {/* <Date date={profile.dob} /> */}
+                <h4>
+                  <i class='fas fa-birthday-cake'></i>{' '}
+                  {profile.dob.substring(0, 10)}
+                </h4>
               </h4>
               <br />
             </Fragment>
           )}
-          <h2 className='activity'>Recent Activity</h2>
+          {/* <h2 className='activity'>Recent Activity</h2> */}
           {/* {displayEvents()} */}
         </div>
         <div className='right-profile'>

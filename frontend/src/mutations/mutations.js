@@ -191,12 +191,16 @@ const placeorderMutation = gql`
   mutation(
     $customerId: String
     $restaurantId: String
+    $customerName: String
+    $restaurantName: String
     $item: String
     $deliveryOption: String
   ) {
     placeOrder(
       customerId: $customerId
       restaurantId: $restaurantId
+      customerName: $customerName
+      restaurantName: $restaurantName
       item: $item
       deliveryOption: $deliveryOption
     ) {

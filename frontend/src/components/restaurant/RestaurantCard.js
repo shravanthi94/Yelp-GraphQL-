@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './restaurant.module.css';
+import resImg from '../../images/restaurant.jpg';
 
 const RestaurantCard = ({ restaurant }) => {
   return (
@@ -14,14 +15,14 @@ const RestaurantCard = ({ restaurant }) => {
             <div class='media-content'>
               <div class='content'>
                 <div className='columns'>
-                  <div className='column is-4'>
+                  <div className='column is-5'>
                     <img
                       className={styles.img}
-                      src='images/logo.png'
+                      src={resImg}
                       alt='Restaurant_image'
                     />
                   </div>
-                  <div className='column is-8'>
+                  <div className='column is-7'>
                     <p>
                       <strong>
                         <Link

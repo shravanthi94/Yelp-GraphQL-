@@ -1,11 +1,20 @@
 const Order = require('../models/OrderModel');
 
 const placeOrder = async (args) => {
-  const { item, deliveryOption, restaurantId, customerId } = args;
+  const {
+    item,
+    deliveryOption,
+    restaurantId,
+    customerId,
+    customerName,
+    restaurantName,
+  } = args;
 
   const order = new Order({
     restaurant: restaurantId,
     customer: customerId,
+    customerName,
+    restaurantName,
     item,
     deliveryOption,
     status: 'New',

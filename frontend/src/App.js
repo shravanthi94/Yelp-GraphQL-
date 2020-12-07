@@ -78,7 +78,7 @@ function App() {
               />
               <Route
                 exact
-                path='/customer/placeorder/:id'
+                path='/customer/placeorder/:id/:name'
                 component={Placeorder}
               />
             </Switch>

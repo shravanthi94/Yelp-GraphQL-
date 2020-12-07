@@ -18,6 +18,8 @@ const Placeorder = ({ placeorderMutation, location, match }) => {
       variables: {
         customerId: localStorage.getItem('user'),
         restaurantId: match.params.id,
+        customerName: localStorage.getItem('name'),
+        restaurantName: match.params.name,
         item: itemName,
         deliveryOption: deliveryOption,
       },

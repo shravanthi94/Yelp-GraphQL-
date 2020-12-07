@@ -18,7 +18,7 @@ const UpdateProfile = ({
     state: '',
     country: '',
     phone: '',
-    nickName: '',
+    nickname: '',
     headline: '',
     thingsILove: '',
     findMeIn: '',
@@ -197,7 +197,7 @@ const UpdateProfile = ({
             <input
               className={styles.my_text}
               type='text'
-              name='nickName'
+              name='nickname'
               value={nickname}
               onChange={(e) => onChange(e)}
             />

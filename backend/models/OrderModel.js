@@ -10,14 +10,18 @@ const OrderSchema = new mongoose.Schema({
     ref: 'restaurant',
     required: true,
   },
+  customerName: {
+    type: String,
+  },
+  restaurantName: {
+    type: String,
+  },
   item: {
     type: String,
-    required: true,
   },
   deliveryOption: {
     type: String,
     default: '',
-    required: true,
   },
   status: {
     type: String,
