@@ -20,3 +20,5 @@ This is Yelp Web Application that allows users to register and order food online
 2. Open the terminal in the folder "frontend".
 3. Execute "npm install" to install all the dependencies.
 4. Execute "npm start" to run the frontend server.
+
+Open the browser and navigate to Front end server's IP address with Port number (Eg: 127.0.0.1:3000) to find the landing page.
