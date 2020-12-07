@@ -84,7 +84,7 @@ const Restaurant = ({ location }) => {
                   <Fragment>
                     {' '}
                     <Link
-                      to={`/customer/restaurant/review/${id}`}
+                      to={`/customer/addReview/${id}`}
                       className={styles.top_btn}
                     >
                       🌟 Write a Review
@@ -135,5 +135,13 @@ const Restaurant = ({ location }) => {
     </Fragment>
   );
 };
+
+// export default compose(
+//   graphql(getRestaurantQuery, {
+//     options: {
+//       variables: { restaurant_id: location.state.restaurant },
+//     },
+//   }),
+// )(Restaurant);
 
 export default Restaurant;

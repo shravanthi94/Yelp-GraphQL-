@@ -166,6 +166,27 @@ const updateMenuItemMutation = gql`
   }
 `;
 
+const addReviewMutation = gql`
+  mutation(
+    $customerId: String
+    $restaurantId: String
+    $rating: Int!
+    $text: String
+    $name: String
+  ) {
+    addReview(
+      customerId: $customerId
+      restaurantId: $restaurantId
+      rating: $rating
+      text: $text
+      name: $name
+    ) {
+      message
+      status
+    }
+  }
+`;
+
 export {
   loginCustomerMutation,
   signupCustomerMutation,
@@ -175,4 +196,5 @@ export {
   updateRestaurantMutation,
   addMenuItemMutation,
   updateMenuItemMutation,
+  addReviewMutation,
 };
