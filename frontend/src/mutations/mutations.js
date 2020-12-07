@@ -187,6 +187,25 @@ const addReviewMutation = gql`
   }
 `;
 
+const placeorderMutation = gql`
+  mutation(
+    $customerId: String
+    $restaurantId: String
+    $item: String
+    $deliveryOption: String
+  ) {
+    placeOrder(
+      customerId: $customerId
+      restaurantId: $restaurantId
+      item: $item
+      deliveryOption: $deliveryOption
+    ) {
+      message
+      status
+    }
+  }
+`;
+
 export {
   loginCustomerMutation,
   signupCustomerMutation,
@@ -197,4 +216,5 @@ export {
   addMenuItemMutation,
   updateMenuItemMutation,
   addReviewMutation,
+  placeorderMutation,
 };

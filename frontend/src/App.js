@@ -15,6 +15,7 @@ import Signup from './components/customer/Signup';
 import Profile from './components/customer/Profile';
 import UpdateProfile from './components/customer/profile-forms/UpdateProfile';
 import AddReview from './components/restaurant/AddReview';
+import Placeorder from './components/customer/Placeorder';
 
 // Restaurant Links
 import SignupRes from './components/restaurant/Signup';
@@ -74,6 +75,11 @@ function App() {
                 exact
                 path='/customer/addReview/:id'
                 component={AddReview}
+              />
+              <Route
+                exact
+                path='/customer/placeorder/:id'
+                component={Placeorder}
               />
             </Switch>
           </section>

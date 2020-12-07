@@ -90,7 +90,10 @@ const Restaurant = ({ location }) => {
                       🌟 Write a Review
                     </Link>
                     <Link
-                      to={`/customer/placeorder/${id}`}
+                      to={{
+                        pathname: `/customer/placeorder/${id}`,
+                        state: { menu: menu },
+                      }}
                       className={styles.top_btn}
                     >
                       Order Now
