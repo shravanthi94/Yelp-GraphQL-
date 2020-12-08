@@ -128,6 +128,35 @@ const getCustomerOrdersQuery = gql`
   }
 `;
 
+const getRestaurantSearchResults = gql`
+  query($searchData: String) {
+    restaurantSearch(searchData: $searchData) {
+      id
+      name
+      email
+      location
+      phone
+      description
+      cuisine
+      deliveryMethod
+      timings
+      menu {
+        name
+        ingredients
+        price
+        description
+        category
+      }
+      reviews {
+        customer
+        rating
+        text
+        date
+      }
+    }
+  }
+`;
+
 export {
   getCustomerQuery,
   getRestaurantsQuery,
@@ -135,4 +164,5 @@ export {
   getReviewsQuery,
   getRestaurantOrdersQuery,
   getCustomerOrdersQuery,
+  getRestaurantSearchResults,
 };

@@ -33,6 +33,9 @@ import Restaurant from './components/restaurant/Restaurant';
 import OrdersRes from './components/restaurant/Orders';
 import OrdersCus from './components/customer/Orders';
 
+// Search page
+import SearchResults from './components/restaurant/SearchResults';
+
 // Apollo client setup
 const client = new ApolloClient({
   uri: `${backendURI}/graphql`,
@@ -89,6 +92,11 @@ function App() {
               <Route exact path='/restaurant/orders' component={OrdersRes} />
               <Route exact path='/customer/details' component={Customer} />
               <Route exact path='/customer/orders' component={OrdersCus} />
+              <Route
+                exact
+                path='/restaurant/searchResults'
+                component={SearchResults}
+              />
             </Switch>
           </section>
         </Fragment>

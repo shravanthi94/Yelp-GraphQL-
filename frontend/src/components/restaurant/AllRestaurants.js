@@ -1,12 +1,17 @@
-import React, { Fragment } from 'react';
-// import { Link } from 'react-router-dom';
+import React, { Fragment, useState, useEffect } from 'react';
 import { graphql } from 'react-apollo';
 import { flowRight as compose } from 'lodash';
 import { getRestaurantsQuery } from '../../queries/query';
 import RestaurantCard from './RestaurantCard';
 import styles from './restaurant.module.css';
 
-const AllRestaurants = ({ data: { restaurants } }) => {
+const AllRestaurants = ({ data: { restaurants: results } }) => {
+  const [restaurants, setrestaurants] = useState('');
+
+  useEffect(() => {
+    setrestaurants(results);
+  }, [results]);
+
   return !restaurants ? (
     'No restaurants found'
   ) : (

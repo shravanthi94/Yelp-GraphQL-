@@ -64,31 +64,34 @@ const Orders = ({ data: { customerOrders } }) => {
       <div className='container'>
         <h1 className={styles.order_title}>Orders placed by customers</h1>
 
-        <select
-          className='select-css select-css-width select-orders'
-          name='filter'
-          value={filter}
-          onChange={(e) => handlefilters(e)}
-        >
-          <option>Select Status</option>
-          <option value='All'>All Orders</option>
-          <option value='Received'>Received</option>
-          <option value='Preparing'>Preparing</option>
-          <option value='ontheway'>On the way / Pick up ready</option>
-          <option value='Delivered'>Delivered / Pickedup</option>
-        </select>
+        <div style={{ display: 'flex' }}>
+          <select
+            className='select-css select-css-width select-orders'
+            style={{ width: '200px' }}
+            name='filter'
+            value={filter}
+            onChange={(e) => handlefilters(e)}
+          >
+            <option>Filter by Status</option>
+            <option value='All'>All Orders</option>
+            <option value='Received'>Received</option>
+            <option value='Preparing'>Preparing</option>
+            <option value='ontheway'>On the way / Pick up ready</option>
+            <option value='Delivered'>Delivered / Pickedup</option>
+          </select>
 
-        <select
-          className='select-css select-css-width select-orders'
-          style={{ marginLeft: '3%' }}
-          name='date'
-          value={date}
-          onChange={(e) => handleDateFilter(e)}
-        >
-          <option>Order By Date</option>
-          <option value='Ascending'>Ascending</option>
-          <option value='Descending'>Descending</option>
-        </select>
+          <select
+            className='select-css select-css-width select-orders'
+            style={{ marginLeft: '3%', width: '200px' }}
+            name='date'
+            value={date}
+            onChange={(e) => handleDateFilter(e)}
+          >
+            <option>Order By Date</option>
+            <option value='Ascending'>Ascending</option>
+            <option value='Descending'>Descending</option>
+          </select>
+        </div>
         <hr />
 
         {orders.map((order) => {
