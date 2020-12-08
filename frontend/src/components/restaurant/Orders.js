@@ -100,12 +100,13 @@ const Orders = ({
     <Fragment>
       {success === true && <p>Order status updated.</p>}
       <div className='container'>
-        <h1 className={styles.order_title}>Orders placed by customers</h1>
+        <h1 className={styles.order_title}>Orders Placed by Customers</h1>
 
         <select
           className='select-css select-css-width select-orders'
           name='filter'
           value={filter}
+          style={{ width: '200px', marginLeft: '0px' }}
           onChange={(e) => handlefilters(e)}
         >
           <option>Select Status</option>

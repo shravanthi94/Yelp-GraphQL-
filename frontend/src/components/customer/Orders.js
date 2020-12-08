@@ -62,7 +62,7 @@ const Orders = ({ data: { customerOrders } }) => {
   ) : (
     <Fragment>
       <div className='container'>
-        <h1 className={styles.order_title}>Orders placed by customers</h1>
+        <h1 className={styles.order_title}>Orders Placed by You</h1>
 
         <div style={{ display: 'flex' }}>
           <select
