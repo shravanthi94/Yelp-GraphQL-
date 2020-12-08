@@ -84,11 +84,11 @@ const Orders = ({
     if (e.target.value === 'All') {
       setorders(restaurantOrders);
     } else if (e.target.value === 'New') {
-      setorders(restaurantOrders.filter((each) => each.status === 'New'));
+      setorders(restaurantOrders.filter((each) => each.type === 'New'));
     } else if (e.target.value === 'Delivered') {
-      setorders(restaurantOrders.filter((each) => each.status === 'Delivered'));
+      setorders(restaurantOrders.filter((each) => each.type === 'Delivered'));
     } else if (e.target.value === 'Cancelled') {
-      setorders(restaurantOrders.filter((each) => each.status === 'Cancelled'));
+      setorders(restaurantOrders.filter((each) => each.type === 'Cancelled'));
     }
 
     setfilter(e.target.value);
@@ -127,7 +127,7 @@ const Orders = ({
                       Order placed by{' '}
                       <Link
                         className={styles.display_name}
-                        to={`/customer/details/${order.customer}`}
+                        to={`/customer/details`}
                         onClick={(e) => handleCustomerClick(e, order.customer)}
                       >
                         {order.customerName}
@@ -191,7 +191,7 @@ const Orders = ({
                         Cancel Order
                       </button>
                       <p className='date-order'>
-                        {/* Order placed on: {order.date.substring(0, 10)} */}
+                        Order placed on: {order.date.substring(0, 10)}
                       </p>
                     </Fragment>
                   </article>

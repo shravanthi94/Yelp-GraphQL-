@@ -16,6 +16,7 @@ import Profile from './components/customer/Profile';
 import UpdateProfile from './components/customer/profile-forms/UpdateProfile';
 import AddReview from './components/restaurant/AddReview';
 import Placeorder from './components/customer/Placeorder';
+import Customer from './components/customer/Customer';
 
 // Restaurant Links
 import SignupRes from './components/restaurant/Signup';
@@ -30,6 +31,7 @@ import Restaurant from './components/restaurant/Restaurant';
 
 // Orders
 import OrdersRes from './components/restaurant/Orders';
+import OrdersCus from './components/customer/Orders';
 
 // Apollo client setup
 const client = new ApolloClient({
@@ -85,6 +87,8 @@ function App() {
                 component={Placeorder}
               />
               <Route exact path='/restaurant/orders' component={OrdersRes} />
+              <Route exact path='/customer/details' component={Customer} />
+              <Route exact path='/customer/orders' component={OrdersCus} />
             </Switch>
           </section>
         </Fragment>

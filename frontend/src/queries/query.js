@@ -112,10 +112,27 @@ const getRestaurantOrdersQuery = gql`
   }
 `;
 
+const getCustomerOrdersQuery = gql`
+  query($customerId: String) {
+    customerOrders(customerId: $customerId) {
+      id
+      customer
+      restaurant
+      restaurantName
+      customerName
+      item
+      deliveryOption
+      status
+      date
+    }
+  }
+`;
+
 export {
   getCustomerQuery,
   getRestaurantsQuery,
   getRestaurantQuery,
   getReviewsQuery,
   getRestaurantOrdersQuery,
+  getCustomerOrdersQuery,
 };
