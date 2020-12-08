@@ -6,7 +6,7 @@ import { getRestaurantQuery } from '../../queries/query';
 import spinner from '../layout/Spinner';
 import Reviews from './Reviews';
 import '../../CSS/dashboard.css';
-import imgSrc from '../../images/placeholderimg.jpg';
+import imgSrc from '../../images/restaurant.jpg';
 
 const Dashboard = ({ data: { restaurant } }) => {
   console.log('Restaurant: ', restaurant);

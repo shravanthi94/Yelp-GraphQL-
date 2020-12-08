@@ -25,7 +25,7 @@ const {
 const UserType = new GraphQLObjectType({
   name: 'User',
   fields: () => ({
-    id: { type: GraphQLID },
+    id: { type: GraphQLString },
     name: { type: GraphQLString },
     email: { type: GraphQLString },
     password: { type: GraphQLString },
@@ -49,7 +49,7 @@ const UserType = new GraphQLObjectType({
 const RestaurantType = new GraphQLObjectType({
   name: 'Restaurant',
   fields: () => ({
-    id: { type: GraphQLID },
+    id: { type: GraphQLString },
     name: { type: GraphQLString },
     email: { type: GraphQLString },
     password: { type: GraphQLString },
@@ -103,8 +103,9 @@ const ReviewType = new GraphQLObjectType({
 const OrderType = new GraphQLObjectType({
   name: 'Orders',
   fields: () => ({
-    customer: { type: GraphQLID },
-    restaurant: { type: GraphQLID },
+    id: { type: GraphQLString },
+    customer: { type: GraphQLString },
+    restaurant: { type: GraphQLString },
     customerName: { type: GraphQLString },
     restaurantName: { type: GraphQLString },
     item: { type: GraphQLString },

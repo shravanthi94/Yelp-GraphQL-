@@ -21,7 +21,7 @@ const Reviews = ({ reviews }) => {
                     initialRating={each.rating}
                   />
                   {'  '}
-                  <small>Review on {each.date.substring(0, 10)}</small>
+                  <small>Review on 06-12-2020</small>
                 </div>
                 <p className={styles.headers}>
                   <strong>{each.text}</strong>

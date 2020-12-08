@@ -28,6 +28,9 @@ import AddDish from './components/restaurant/Dashboard-forms/AddMenu';
 import UpdateDish from './components/restaurant/Dashboard-forms/UpdateMenu';
 import Restaurant from './components/restaurant/Restaurant';
 
+// Orders
+import OrdersRes from './components/restaurant/Orders';
+
 // Apollo client setup
 const client = new ApolloClient({
   uri: `${backendURI}/graphql`,
@@ -81,6 +84,7 @@ function App() {
                 path='/customer/placeorder/:id/:name'
                 component={Placeorder}
               />
+              <Route exact path='/restaurant/orders' component={OrdersRes} />
             </Switch>
           </section>
         </Fragment>

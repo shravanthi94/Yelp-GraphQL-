@@ -210,6 +210,24 @@ const placeorderMutation = gql`
   }
 `;
 
+const updateStatusMutation = gql`
+  mutation($id: String, $status: String) {
+    updateOrder(id: $id, status: $status) {
+      message
+      status
+    }
+  }
+`;
+
+const cancelOrderMutation = gql`
+  mutation($id: String) {
+    updateOrder(id: $id) {
+      message
+      status
+    }
+  }
+`;
+
 export {
   loginCustomerMutation,
   signupCustomerMutation,
@@ -221,4 +239,6 @@ export {
   updateMenuItemMutation,
   addReviewMutation,
   placeorderMutation,
+  updateStatusMutation,
+  cancelOrderMutation,
 };
