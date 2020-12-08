@@ -24,6 +24,7 @@ const Orders = ({
 
   const [status, setstatus] = useState('');
   const [success, setsuccess] = useState(false);
+  const [filter, setfilter] = useState('');
 
   const handleStatusChange = async (e, id) => {
     e.preventDefault();
@@ -78,6 +79,21 @@ const Orders = ({
     localStorage.setItem('Customer', id);
   };
 
+  const handlefilters = (e) => {
+    e.preventDefault();
+    if (e.target.value === 'All') {
+      setorders(restaurantOrders);
+    } else if (e.target.value === 'New') {
+      setorders(restaurantOrders.filter((each) => each.status === 'New'));
+    } else if (e.target.value === 'Delivered') {
+      setorders(restaurantOrders.filter((each) => each.status === 'Delivered'));
+    } else if (e.target.value === 'Cancelled') {
+      setorders(restaurantOrders.filter((each) => each.status === 'Cancelled'));
+    }
+
+    setfilter(e.target.value);
+  };
+
   return !orders ? (
     spinner
   ) : (
@@ -85,6 +101,21 @@ const Orders = ({
       {success === true && <p>Order status updated.</p>}
       <div className='container'>
         <h1 className={styles.order_title}>Orders placed by customers</h1>
+
+        <select
+          className='select-css select-css-width select-orders'
+          name='filter'
+          value={filter}
+          onChange={(e) => handlefilters(e)}
+        >
+          <option>Select Status</option>
+          <option value='All'>All Orders</option>
+          <option value='New'>New Order</option>
+          <option value='Delivered'>Delivered Order</option>
+          <option value='Cancelled'>Cancelled Order</option>
+        </select>
+
+        <hr />
 
         {orders.map((order) => {
           return (
